@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  body
+    table(class="app-status")
+
+        tr
+            th  Item
+            th  Value
+            th  Status
+            th  Comments
+
+        tr
+            td  Cosmos version
+            td= cosmosVersion
+            td  NA
+            td  Current Cosmos release number
+
+        tr
+            td  Profile version
+            td= profileVersion
+            td  NA
+            td  Current version of Profile app
+
+        tr
+            td  Platform
+            td= environment
+            td  NA
+            td  Environment in which Profile app is currently executing
+
+        tr
+            td  Static assets base url
+            td= staticAssetsBaseUrl
+            td  NA
+            td  Base url for static assets references from server pages
+
+        tr
+            - var cellClass = killSwitch ? "red" : "green"
+            - var status = killSwitch ? "ON" : "OFF"
+            td(class=cellClass)  Kill switch
+            td(class=cellClass)= killSwitch
+            td(class=cellClass)= status
+            td(class=cellClass)  On/Off toggle for Profile app
+
+        tr
+            th(colspan="3", class="full-width") Services health
