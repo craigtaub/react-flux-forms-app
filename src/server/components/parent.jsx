@@ -4,7 +4,7 @@ import DataStore from '../stores/dataStore';
 class Parent extends React.Component {
     constructor(props) {
         super(props);
-        console.log('run parent constructor');
+
         this.state = DataStore.getState();
         this.onStateChange = this.onStateChange.bind(this);
     }

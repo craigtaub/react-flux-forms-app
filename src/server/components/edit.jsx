@@ -1,24 +1,38 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import DataActions from '../actions/dataActions';
 
 class Edit extends React.Component {
     constructor(props) {
         super(props);
-        console.log('run edit constructor');
+
+        this.state = {};
+        this.state.email = props.data.email;
+        this.state.error = props.data.error;
+
         this._submitChanges = this._submitChanges.bind(this);
         this._updateEmail = this._updateEmail.bind(this);
     }
 
     _submitChanges(event) {
         event.preventDefault();
-        console.log('submit');
+        DataActions.updateEmail(event.target.newEmail.value);
+        browserHistory.push('/index?updated=email');
     }
 
     _updateEmail(event) {
-        console.log(event.target.value);
-        console.log('updated, so set state or props ?')
-        DataActions.updateEmail(event.target.value);
+        const emailValue = event.target.value;
+        if (emailValue.length < 4) {
+          this.setState({
+              error: 'too short',
+              email: event.target.value
+          });
+        } else {
+          this.setState({
+              error: false,
+              email: event.target.value
+          });
+        }
     }
 
     render() {
@@ -29,11 +43,12 @@ class Edit extends React.Component {
                         Welcome to edit
                     </h1>
                     <form action="/edit" method="post" onSubmit={this._submitChanges}>
+                      <p>{this.state.error}</p>
                       <label htmlFor="newEmail">Email</label>
                       <input
                         name="newEmail"
-                        value={this.props.data.email}
                         onChange={this._updateEmail}
+                        value={this.state.email}
                       />
                       <input type="submit" value="Submit"/>
                     </form>

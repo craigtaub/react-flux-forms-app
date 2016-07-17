@@ -5,7 +5,6 @@ import Edit from '../components/edit.jsx';
 import Parent from '../components/parent.jsx';
 
 function getRoutes(isClient = false) {
-    console.log('getRoutes + ', isClient);
     return (
         <Router history={isClient ? browserHistory : null}>
             <Route path="/" component={Parent}>

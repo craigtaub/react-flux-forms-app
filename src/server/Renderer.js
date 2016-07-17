@@ -15,14 +15,13 @@ function Renderer(request, response) {
             const content = renderToString(<RouterContext {...props} />);
             const statusCode = status || 200;
             iso.add(content, alt.flush());
-            console.log('response.render');
-            response
+            console.log('response.render: ', storeData);
+            return response
                 .status(statusCode)
                 .render(template, {
                     title: 'Craig page',
                     html: iso.render(content, storeData)
                 });
-            console.log('END response.render')
         } catch (error) {
             console.log('render error 1');
             renderResult('base', {}, {}, 500);
