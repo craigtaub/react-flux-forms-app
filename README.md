@@ -6,8 +6,8 @@
 - Transient + Persistent - TODO
 
 ## Maybe
-Make ajax to /api route and update store on response..Flux - TODO
-- not really needed as action can easily be sync/async
+- Make ajax to /api route and update store on response..Flux - TODO
+ - not really needed as action can easily be sync/async
 
 ##  Issues:
 1) without listener on parent updates to store dont cause re-render
@@ -34,8 +34,8 @@ SOLVED need seedData to be same name as store so DataStore.data
 - all page loads will get from db
 
 ## Solutions:
-1 Store holding data + errors.
-Listener to Store on Parent/smart component.
-Each component loads data+errors into local State when loads.
-On submit actions updates Store (js).
-On submit form, if validation errors update store seedData with transient data OR update + show db data (non-js).
+- 1 Store holding data + errors.
+- Listener to Store on Parent/smart component.
+- Each component loads data+errors into local State when loads.
+- On submit actions updates Store (js).
+- On submit form, if validation errors update store seedData with transient data OR update + show db data (non-js).
