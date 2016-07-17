@@ -9,6 +9,7 @@
 - Make ajax to /api route and update store on response..Flux - TODO
  - not really needed as action can easily be sync/async
 
+
 ##  Issues:
 1) without listener on parent updates to store dont cause re-render
 SOLVED SO parent needs listener to store.
@@ -25,6 +26,9 @@ BUT dont seem to be able to update store on server.
 WHY doesnt getState() get seedData
 SOLVED need seedData to be same name as store so DataStore.data
 
+4) js, edit form, submit and action returns error, need show error + post data, then navigate away n back and should refresh
+
+
 ## Supposed issues:
 1) js enabled, get error, move away and come back
 - SOLU: data in state till can submit, when submit saved, till then errors + data lost when move away
@@ -32,6 +36,7 @@ SOLVED need seedData to be same name as store so DataStore.data
 2) js disabled, submit and have error, show post data and error.
 - SOLU: having store seed data means on server POST can set seed data and re-render page.
 - all page loads will get from db
+
 
 ## Solutions:
 - 1 Store holding data + errors.
