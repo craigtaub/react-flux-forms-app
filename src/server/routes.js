@@ -7,6 +7,11 @@ router.get('/', function indexRoute(request, response, next) {
     next();
 });
 
+// for the browser
+router.get('/favicon.ico', function (request,response) {
+    response.status(200).end();
+});
+
 router.get('/index', function getEdit(request, response, next) {
   // for non-js + page refresh takes from db.
   response.locals = {

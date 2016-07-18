@@ -16,11 +16,17 @@ class Edit extends React.Component {
 
     _submitChanges(event) {
         event.preventDefault();
-        DataActions.updateEmail(event.target.newEmail.value);
-        console.log(this.state.error);
-        if(!this.state.error) {
-            browserHistory.push('/index?updated=email');
-        }
+        const newEmail = event.target.newEmail.value;
+        DataActions.updateEmail(newEmail).then((data) => {
+            if (data === true) {
+                browserHistory.push('/index?updated=email');
+            } else {
+                this.setState({
+                    error: data,
+                    email: newEmail
+                });
+            }
+        })
     }
 
     _updateEmail(event) {

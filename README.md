@@ -27,6 +27,7 @@ WHY doesnt getState() get seedData
 SOLVED need seedData to be same name as store so DataStore.data
 
 4) js, edit form, submit and action returns error, need show error + post data, then navigate away n back and should refresh
+SOLVED async action, if error set state for email + error, if success move page. If request + update on server ok then Stores updated.
 
 
 ## Supposed issues:

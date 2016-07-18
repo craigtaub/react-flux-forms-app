@@ -13,15 +13,15 @@ class DataStore {
     }
 
     // request update ok
-    // onUpdateEmail(email) {
-    //     this.data.email = email;
-    //     this.data.error = false;
-    // }
-
-    // request update error
     onUpdateEmail(email) {
-        this.data.error = 'some error';
+        this.data.email = email;
+        this.data.error = false;
     }
+
+    // request update error (on server)
+    // onUpdateEmail(email) {
+    //     this.data.error = 'some error';
+    // }
 
 }
 
