@@ -43,6 +43,6 @@ WHY doesnt getState() get seedData
 - 1 Store holding data + errors.
 - Listener to Store on Parent/smart component.
 - Each component loads data+errors into local State when loads.
-- On submit actions updates Store (js).
-- On submit form, if validation errors update store seedData with transient data OR update + show db data (non-js).
-- Async actions which update local state on error + dispatch to store listener + update Store on success.
+- On submit (js), action updates Store if success OR update local state if error 
+- On submit (no-js), if validation errors update store seedData with transient data OR update and show db data
+- Async actions which update local state on error OR dispatch to store listener and update Store on success.
