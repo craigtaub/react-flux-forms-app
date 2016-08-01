@@ -29,6 +29,7 @@ WHY doesnt getState() get seedData
 4) js, edit form, submit and action returns error, need show error + post data, then navigate away n back and should refresh
 - SOLVED async action, if error set state for email + error (in local state so loses if move away), if success (update store +) move page. Store is source of truth and state Transient.
 
+5) js, edit form and have redirect on success, can component just use action in sync manner and have async in action (e.g. http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)? Somehow use Store update to re-render and redirect.
 
 ## Supposed issues:
 1) js enabled, get error, move away and come back
