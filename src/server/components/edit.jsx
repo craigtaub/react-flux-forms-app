@@ -17,18 +17,11 @@ class Edit extends React.Component {
     _submitChanges(event) {
         event.preventDefault();
         const newEmail = event.target.newEmail.value;
-        DataActions.updateEmail(newEmail).then((data) => {
-            if (data === true) {
-                browserHistory.push('/index?updated=email');
-            } else {
-                this.setState({
-                    error: data,
-                    email: newEmail
-                });
-            }
-        })
+
+        DataActions.updateEmail(newEmail);
     }
 
+    // state updated (keypress)
     _updateEmail(event) {
         const emailValue = event.target.value;
         if (emailValue.length < 4) {
@@ -40,6 +33,18 @@ class Edit extends React.Component {
           this.setState({
               error: false,
               email: event.target.value
+          });
+        }
+    }
+
+    // store updated (ajax)
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.data.error) {
+          browserHistory.push('/index?updated=email');
+        } else {
+          this.setState({
+              error: nextProps.data.error,
+              email: nextProps.data.email
           });
         }
     }

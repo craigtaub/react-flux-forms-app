@@ -29,7 +29,8 @@ WHY doesnt getState() get seedData
 4) js, edit form, submit and action returns error, need show error + post data, then navigate away n back and should refresh
 - SOLVED async action, if error set state for email + error (in local state so loses if move away), if success (update store +) move page. Store is source of truth and state Transient.
 
-5) js, edit form and have redirect on success, can component just use action in sync manner and have async in action (e.g. http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)? Somehow use Store update to re-render and redirect.
+5) js, edit form and have redirect on success, can component just use action in sync manner and have async in action (e.g. http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)? Somehow use Store update to re-render and redirect. (why? testing requiring a fake promise for  async action and not using State/Store to re-render).
+- use componentWillReceiveProps to always check store/props and redirect/update locally based on it
 
 ## Supposed issues:
 1) js enabled, get error, move away and come back
@@ -44,6 +45,9 @@ WHY doesnt getState() get seedData
 - 1 Store holding data + errors.
 - Listener to Store on Parent/smart component.
 - Each component loads data+errors into local State when loads.
-- On submit (js), action updates Store if success OR update local state if error 
+- On submit (js), action updates Store.
+ - then lifecycle componentWillReceiveProps checks loaded props (aka store)
+ - redirects (success) or updates local state (error).
+ - Ajax is only time store is updated.
+ - NO ASYNC ACTIONS (promises)
 - On submit (no-js), if validation errors update store seedData with transient data OR update and show db data
-- Async actions which update local state on error OR dispatch to store listener and update Store on success.
