@@ -30,7 +30,7 @@ WHY doesnt getState() get seedData
 - SOLVED async action, if error set state for email + error (in local state so loses if move away), if success (update store +) move page. Store is source of truth and state Transient.
 
 5) js, edit form and have redirect on success, can component just use action in sync manner and have async in action (e.g. http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)? Somehow use Store update to re-render and redirect. (why? testing requiring a fake promise for  async action and not using State/Store to re-render).
-- use componentWillReceiveProps to always check store/props and redirect/update locally based on it
+- SOLVED use componentWillReceiveProps to always check store/props and redirect/update locally based on it, dont use promise implementation anywhere, all unidirectional.
 
 ## Supposed issues:
 1) js enabled, get error, move away and come back
