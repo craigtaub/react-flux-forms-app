@@ -5,6 +5,8 @@ var buffer = require('vinyl-buffer');
 var gulp = require('gulp');
 var envify = require('envify/custom');
 var source = require('vinyl-source-stream');
+var plugins = require('gulp-load-plugins')(); //plugins lazy loaded.
+// same as plugins.nodemon = require('gulp-nodemon');
 
 var staticBase = './static-assets';
 var files = {
@@ -16,7 +18,7 @@ var files = {
     js: {
         entryPoints: {
             // client: './src/client/client.jsx',
-            // server: './src/server/server.js'
+            server: './src/server/server.js',
             client: './src/server/client.jsx'
         }
     }
@@ -71,6 +73,23 @@ function bundleJs(watch) {
     return rebundleJs;
 }
 
-gulp.task('browserify', bundleJs(false));
+function startServer() {
+    server = plugins.nodemon({
+        script: files.js.entryPoints.server,
+        ext: 'js jsx',
+        watch: [
+            './src/server',
+            './src/server/server.js'
+        ],
+        ignore: []
+    }).on('restart', function(changedFiles) {
+        console.log('Restarted app');
+    }).on('quit', function() {
+        console.log('Closing nodemon server...');
+    });
+    return server;
+}
 
+gulp.task('browserify', bundleJs(false));
 gulp.task('watchify', bundleJs(true));
+gulp.task('server', startServer);
