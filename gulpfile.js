@@ -40,7 +40,7 @@ function bundleJs(watch) {
         .transform(babelify, {
            presets: ['es2015', 'react']
        })
-       // think extra transform just deals with envify.
+       // think extra transform just deals with envify...OPTIMAL to bundle transforms together.
        .transform(envify({
            // replaces environment checks with strings..
            // e.g. process.env.NODE_ENV becomes 'development'..
